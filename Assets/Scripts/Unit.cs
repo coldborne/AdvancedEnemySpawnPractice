@@ -19,9 +19,9 @@ public class Unit : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _speed * Time.deltaTime);
 
-        float toTargetDistance = Vector3.Distance(transform.position, _targetPosition);
+        float sqrDistance = (transform.position - _targetPosition).sqrMagnitude;
 
-        if (toTargetDistance < _arrivalThreshold)
+        if (sqrDistance < _arrivalThreshold * _arrivalThreshold)
         {
             _targetPosition = _targetPosition == _toPosition ? _fromPosition : _toPosition;
         }
